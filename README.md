@@ -11,6 +11,10 @@ A high-performance model evaluation framework built on Polars lazy evaluation.
 
 Specializes in fast, flexible, and type-safe metric evaluation for data science workflows.
 
+## Documentation 
+
+<https://elong0527.github.io/healthmetrics/>
+
 ## Installation
 
 You can install the development version from GitHub:
