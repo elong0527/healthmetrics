@@ -30,7 +30,7 @@ jobs:
         
     - name: Run tests with coverage
       run: |
-        coverage run --source=src/polars_eval_metrics -m unittest discover tests
+        coverage run --source=src/polars_eval_metrics -m unittest discover -s tests -t .
         coverage report
         coverage html
         coverage xml
