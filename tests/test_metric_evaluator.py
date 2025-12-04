@@ -83,9 +83,9 @@ class TestMetricEvaluatorBasic(BaseMetricEvaluatorTest):
         stats_df = ARD(evaluator.evaluate(collect=False)).get_stats()
         values = stats_df["value"].to_list()
         self.assertTrue(all(v >= 0 for v in values if v is not None))
-        self.assertTrue(all(
-            not (isinstance(v, float) and v != v) for v in values
-        ))  # Check for NaN
+        self.assertTrue(
+            all(not (isinstance(v, float) and v != v) for v in values)
+        )  # Check for NaN
 
     def test_single_metric_single_estimate(self):
         """Test minimal case"""
@@ -127,7 +127,9 @@ class TestMetricEvaluatorBasic(BaseMetricEvaluatorTest):
         )
 
         verbose = evaluator.evaluate(verbose=True)
-        self.assertTrue({"stat", "context", "id", "groups"}.issubset(set(verbose.columns)))
+        self.assertTrue(
+            {"stat", "context", "id", "groups"}.issubset(set(verbose.columns))
+        )
 
 
 class TestMetricEvaluatorScopes(BaseMetricEvaluatorTest):
@@ -574,22 +576,28 @@ class TestMetricEvaluatorAdvancedScenarios(BaseMetricEvaluatorTest):
             ),
             {"model"},
         )
-        self.assertTrue(all(
-            value is None
-            for value in context_scope.filter(pl.col("metric") == "mae")[
-                "scope"
-            ].to_list()
-        ))
+        self.assertTrue(
+            all(
+                value is None
+                for value in context_scope.filter(pl.col("metric") == "mae")[
+                    "scope"
+                ].to_list()
+            )
+        )
 
         global_rows = verbose_df.filter(pl.col("metric") == "n_sample")
         self.assertEqual(global_rows.height, 1)
         self.assertIsNone(global_rows["estimate"][0])
         self.assertIsNone(global_rows["groups"][0])
-        self.assertEqual(global_rows["stat"][0]["value_int"], self.grouped_metric_df.height)
+        self.assertEqual(
+            global_rows["stat"][0]["value_int"], self.grouped_metric_df.height
+        )
         self.assertEqual(global_rows["stat"][0]["type"], "int")
 
         group_rows = verbose_df.filter(pl.col("metric") == "n_subject")
-        self.assertTrue(all(value is None for value in group_rows["estimate"].to_list()))
+        self.assertTrue(
+            all(value is None for value in group_rows["estimate"].to_list())
+        )
         treatments = {
             group["treatment"]
             for group in group_rows["groups"].to_list()
@@ -606,25 +614,32 @@ class TestMetricEvaluatorAdvancedScenarios(BaseMetricEvaluatorTest):
         model_rows = verbose_df.filter(pl.col("metric") == "n_sample_with_data")
         self.assertTrue(all(group is None for group in model_rows["groups"].to_list()))
         self.assertEqual(set(model_rows["estimate"].to_list()), {"model_a", "model_b"})
-        self.assertTrue(all(
-            row["stat"]["value_int"] == self.grouped_metric_df.height
-            for row in model_rows.iter_rows(named=True)
-        ))
-        self.assertTrue(all(
-            row["stat"]["type"] == "int" for row in model_rows.iter_rows(named=True)
-        ))
+        self.assertTrue(
+            all(
+                row["stat"]["value_int"] == self.grouped_metric_df.height
+                for row in model_rows.iter_rows(named=True)
+            )
+        )
+        self.assertTrue(
+            all(
+                row["stat"]["type"] == "int" for row in model_rows.iter_rows(named=True)
+            )
+        )
 
         mae_rows = verbose_df.filter(pl.col("metric") == "mae")
         combinations = {
             (row["estimate"], row["groups"]["treatment"])
             for row in mae_rows.iter_rows(named=True)
         }
-        self.assertEqual(combinations, {
-            ("model_a", "A"),
-            ("model_a", "B"),
-            ("model_b", "A"),
-            ("model_b", "B"),
-        })
+        self.assertEqual(
+            combinations,
+            {
+                ("model_a", "A"),
+                ("model_a", "B"),
+                ("model_b", "A"),
+                ("model_b", "B"),
+            },
+        )
 
     def test_group_subgroup_overlap_raises(self):
         """Using the same column for group and subgroup should raise a clear error."""
@@ -662,7 +677,9 @@ class TestMetricEvaluatorAdvancedScenarios(BaseMetricEvaluatorTest):
         self.assertIsInstance(subgroup_values.dtype, pl.Enum)
         self.assertEqual(subgroup_values.dtype.categories.to_list(), enum_order)
         self.assertEqual(set(subgroup_values.drop_nulls().to_list()), set(enum_order))
-        self.assertEqual(set(subgroups["subgroup_name"].drop_nulls().to_list()), {"age_group"})
+        self.assertEqual(
+            set(subgroups["subgroup_name"].drop_nulls().to_list()), {"age_group"}
+        )
 
 
 class TestMetricEvaluatorEdgeCases(BaseMetricEvaluatorTest):
@@ -816,7 +833,9 @@ class TestMetricEvaluatorDiagnostics(BaseMetricEvaluatorTest):
 
         verbose_df = evaluator.evaluate(verbose=True)
         self.assertEqual(verbose_df["stat_fmt"].null_count(), 0)
-        self.assertTrue(all(isinstance(val, str) for val in verbose_df["stat_fmt"].to_list()))
+        self.assertTrue(
+            all(isinstance(val, str) for val in verbose_df["stat_fmt"].to_list())
+        )
         self.assertTrue(all(row == [] for row in verbose_df["warning"].to_list()))
         self.assertTrue(all(row == [] for row in verbose_df["error"].to_list()))
         long_df = _evaluate_ard(evaluator).to_long()
@@ -838,7 +857,9 @@ class TestMetricEvaluatorDiagnostics(BaseMetricEvaluatorTest):
         )
 
         verbose_df = evaluator.evaluate(verbose=True)
-        self.assertTrue(verbose_df["error"].to_list()[0], "error column should include diagnostics")
+        self.assertTrue(
+            verbose_df["error"].to_list()[0], "error column should include diagnostics"
+        )
         self.assertEqual(verbose_df["warning"].to_list()[0], [])
         stats = _evaluate_ard(evaluator).get_stats(include_metadata=True)
         self.assertIsNone(stats["formatted"][0])

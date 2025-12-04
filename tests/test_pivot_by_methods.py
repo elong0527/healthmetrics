@@ -327,7 +327,9 @@ class TestPivotByMethods(unittest.TestCase):
 
         # Second call should use cache (same parameters)
         result2 = evaluator.pivot_by_model()
-        self.assertEqual(len(evaluator._evaluation_cache), 1)  # Still just one cached result
+        self.assertEqual(
+            len(evaluator._evaluation_cache), 1
+        )  # Still just one cached result
 
         # Results should not be empty
         self.assertFalse(result1.is_empty())

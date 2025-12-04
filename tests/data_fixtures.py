@@ -1,5 +1,6 @@
 import polars as pl
 
+
 def get_metric_sample_df() -> pl.DataFrame:
     """Wide-form dataset with two model estimates and demographic groupings."""
     return pl.DataFrame(

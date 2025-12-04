@@ -391,7 +391,9 @@ class TestARDStatHandling(unittest.TestCase):
         self.assertEqual(collected["stat"][1]["value_float"], 3.14159)
         self.assertEqual(collected["stat"][2]["value_str"], "significant")
         self.assertIs(collected["stat"][3]["value_bool"], True)
-        self.assertEqual(collected["stat"][4]["value_struct"], {"lower": 2.5, "upper": 3.5})
+        self.assertEqual(
+            collected["stat"][4]["value_struct"], {"lower": 2.5, "upper": 3.5}
+        )
 
     def test_get_stats(self) -> None:
         df = dataset(

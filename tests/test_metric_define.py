@@ -300,7 +300,9 @@ class TestMetricDefineRepresentation(unittest.TestCase):
         # Check that custom expression is shown
         self.assertIn("Across-entity expression:", str_output)
         # The actual expression representation will be there
-        self.assertTrue("[custom]" in str_output or 'col("absolute_error")' in str_output)
+        self.assertTrue(
+            "[custom]" in str_output or 'col("absolute_error")' in str_output
+        )
 
     def test_pl_expr_method(self):
         """Test that pl_expr method works if it exists."""

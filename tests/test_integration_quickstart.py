@@ -186,7 +186,9 @@ class TestQuickstartIntegration(unittest.TestCase):
             .to_list()
         )
 
-        self.assertTrue("F" in gender_values or "M" in gender_values)  # At least one gender
+        self.assertTrue(
+            "F" in gender_values or "M" in gender_values
+        )  # At least one gender
         self.assertGreater(
             len(
                 [v for v in race_values if v in ["White", "Black", "Asian", "Hispanic"]]
@@ -226,7 +228,9 @@ class TestQuickstartIntegration(unittest.TestCase):
         shape = df.shape
         columns = df.columns
 
-        self.assertEqual(shape, (6, 9))  # Expected shape from example (3 subjects x 2 visits = 6 rows)
+        self.assertEqual(
+            shape, (6, 9)
+        )  # Expected shape from example (3 subjects x 2 visits = 6 rows)
         self.assertIn("subject_id", columns)
         self.assertIn("visit_id", columns)
         self.assertIn("treatment", columns)

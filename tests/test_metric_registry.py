@@ -21,7 +21,9 @@ class TestMetricRegistry(unittest.TestCase):
 
         MetricRegistry.register_error(
             error_name,
-            lambda estimate, ground_truth: (pl.col(estimate) - pl.col(ground_truth)).abs(),
+            lambda estimate, ground_truth: (
+                pl.col(estimate) - pl.col(ground_truth)
+            ).abs(),
         )
         MetricRegistry.register_metric(
             metric_name,

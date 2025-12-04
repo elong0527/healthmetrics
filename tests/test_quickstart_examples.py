@@ -82,7 +82,9 @@ class TestQuickstartGroupedEvaluation(unittest.TestCase):
 
         # Inspect verbose view for diagnostics
         verbose_result = evaluator.evaluate(verbose=True)
-        self.assertTrue({"metric_type", "scope", "stat"}.issubset(set(verbose_result.columns)))
+        self.assertTrue(
+            {"metric_type", "scope", "stat"}.issubset(set(verbose_result.columns))
+        )
 
         non_null_values = [
             row["value_float"]
@@ -174,7 +176,9 @@ class TestQuickstartDataIntegrity(unittest.TestCase):
                     )
 
                 if prev_subgroup == row["subgroup_value"] and prev_metric is not None:
-                    self.assertTrue(row["metric"] >= prev_metric or row["estimate"] != "model1")
+                    self.assertTrue(
+                        row["metric"] >= prev_metric or row["estimate"] != "model1"
+                    )
 
             prev_treatment = row["treatment"]
             if row["subgroup_name"] == "gender":

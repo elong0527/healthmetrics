@@ -142,7 +142,9 @@ class TestCreateMetrics(unittest.TestCase):
         self.assertEqual(metrics[1].type, MetricType.WITHIN_SUBJECT)
         self.assertEqual(metrics[2].scope, MetricScope.MODEL)
         self.assertEqual(metrics[2].within_expr, ["error.mean()"])
-        self.assertEqual(metrics[2].across_expr, "value.quantile(0.9, interpolation='linear')")
+        self.assertEqual(
+            metrics[2].across_expr, "value.quantile(0.9, interpolation='linear')"
+        )
 
     def test_single_name(self):
         """Test creating metrics from single name."""

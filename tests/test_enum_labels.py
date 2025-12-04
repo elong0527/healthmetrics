@@ -48,30 +48,50 @@ class TestEnumLabels(unittest.TestCase):
 
         # Check that metric column is an enum
         metric_dtype = result.schema["metric"]
-        self.assertIsInstance(metric_dtype, pl.Enum, f"Expected Enum type for metric, got {metric_dtype}")
+        self.assertIsInstance(
+            metric_dtype, pl.Enum, f"Expected Enum type for metric, got {metric_dtype}"
+        )
 
         # Check that the metric enum categories match the definition order
         expected_metric_order = ["rmse", "mae", "me"]
         metric_categories = metric_dtype.categories.to_list()
-        self.assertEqual(metric_categories, expected_metric_order, f"Expected {expected_metric_order}, got {metric_categories}")
+        self.assertEqual(
+            metric_categories,
+            expected_metric_order,
+            f"Expected {expected_metric_order}, got {metric_categories}",
+        )
 
         # Check that label column is an enum
         label_dtype = result.schema["label"]
-        self.assertIsInstance(label_dtype, pl.Enum, f"Expected Enum type for label, got {label_dtype}")
+        self.assertIsInstance(
+            label_dtype, pl.Enum, f"Expected Enum type for label, got {label_dtype}"
+        )
 
         # Check that the label enum categories match the definition order
         expected_label_order = ["RMSE", "MAE", "Mean Error"]
         label_categories = label_dtype.categories.to_list()
-        self.assertEqual(label_categories, expected_label_order, f"Expected {expected_label_order}, got {label_categories}")
+        self.assertEqual(
+            label_categories,
+            expected_label_order,
+            f"Expected {expected_label_order}, got {label_categories}",
+        )
 
         # Check that estimate column is an enum
         estimate_dtype = result.schema["estimate"]
-        self.assertIsInstance(estimate_dtype, pl.Enum, f"Expected Enum type for estimate, got {estimate_dtype}")
+        self.assertIsInstance(
+            estimate_dtype,
+            pl.Enum,
+            f"Expected Enum type for estimate, got {estimate_dtype}",
+        )
 
         # Check that the estimate enum categories match the input order
         expected_estimate_order = ["model2", "model1"]
         estimate_categories = estimate_dtype.categories.to_list()
-        self.assertEqual(estimate_categories, expected_estimate_order, f"Expected {expected_estimate_order}, got {estimate_categories}")
+        self.assertEqual(
+            estimate_categories,
+            expected_estimate_order,
+            f"Expected {expected_estimate_order}, got {estimate_categories}",
+        )
 
         # Check that results are sorted by the enum order (not alphabetically)
         # The labels should appear in definition order within each group
@@ -81,11 +101,19 @@ class TestEnumLabels(unittest.TestCase):
 
         # Check metric order
         metrics_in_group = first_treatment_a_model2["metric"].to_list()
-        self.assertEqual(metrics_in_group, expected_metric_order, f"Metrics not in definition order. Expected {expected_metric_order}, got {metrics_in_group}")
+        self.assertEqual(
+            metrics_in_group,
+            expected_metric_order,
+            f"Metrics not in definition order. Expected {expected_metric_order}, got {metrics_in_group}",
+        )
 
         # Check label order
         labels_in_group = first_treatment_a_model2["label"].to_list()
-        self.assertEqual(labels_in_group, expected_label_order, f"Labels not in definition order. Expected {expected_label_order}, got {labels_in_group}")
+        self.assertEqual(
+            labels_in_group,
+            expected_label_order,
+            f"Labels not in definition order. Expected {expected_label_order}, got {labels_in_group}",
+        )
 
     def test_enum_label_with_mixed_metrics(self):
         """Test enum ordering with mixed custom and default labels"""
@@ -117,11 +145,19 @@ class TestEnumLabels(unittest.TestCase):
         label_dtype = result.schema["label"]
         expected_order = ["rmse", "Mean Absolute Error", "me"]
         enum_categories = label_dtype.categories.to_list()
-        self.assertEqual(enum_categories, expected_order, f"Expected {expected_order}, got {enum_categories}")
+        self.assertEqual(
+            enum_categories,
+            expected_order,
+            f"Expected {expected_order}, got {enum_categories}",
+        )
 
         # Check that labels appear in definition order
         labels_in_result = result["label"].to_list()
-        self.assertEqual(labels_in_result, expected_order, f"Labels not in definition order. Expected {expected_order}, got {labels_in_result}")
+        self.assertEqual(
+            labels_in_result,
+            expected_order,
+            f"Labels not in definition order. Expected {expected_order}, got {labels_in_result}",
+        )
 
     def test_enum_label_sorting_performance(self):
         """Test that enum labels improve sorting performance"""
@@ -134,7 +170,9 @@ class TestEnumLabels(unittest.TestCase):
             {
                 "subject_id": [i for i in range(n_subjects) for _ in range(n_visits)],
                 "visit_id": [j for _ in range(n_subjects) for j in range(n_visits)],
-                "actual": [10 + i + j for i in range(n_subjects) for j in range(n_visits)],
+                "actual": [
+                    10 + i + j for i in range(n_subjects) for j in range(n_visits)
+                ],
                 "model1": [
                     10 + i + j + 0.5 for i in range(n_subjects) for j in range(n_visits)
                 ],
@@ -172,7 +210,11 @@ class TestEnumLabels(unittest.TestCase):
         ]
 
         actual_labels = sorted_result["label"].unique(maintain_order=True).to_list()
-        self.assertEqual(actual_labels, expected_label_order, f"Sorting doesn't follow definition order. Expected {expected_label_order}, got {actual_labels}")
+        self.assertEqual(
+            actual_labels,
+            expected_label_order,
+            f"Sorting doesn't follow definition order. Expected {expected_label_order}, got {actual_labels}",
+        )
 
 
 if __name__ == "__main__":

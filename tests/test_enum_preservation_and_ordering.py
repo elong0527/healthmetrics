@@ -93,7 +93,9 @@ class TestEnumPreservationAndOrdering(unittest.TestCase):
 
         # Region values should be included
         region_values = [cat for cat in enum_categories if cat in ["North", "South"]]
-        self.assertEqual(len(region_values), 2)  # Both North and South should be present
+        self.assertEqual(
+            len(region_values), 2
+        )  # Both North and South should be present
 
     def test_row_ordering_subgroup_priority(self):
         """Test that row_order_by='subgroup' respects enum order"""

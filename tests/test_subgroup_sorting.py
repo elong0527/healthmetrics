@@ -51,7 +51,11 @@ class TestSubgroupSorting(unittest.TestCase):
 
         # Should be sorted by subgroup_value first: 1, 2, 3
         subgroup_order = result["subgroup_value"].unique(maintain_order=True).to_list()
-        self.assertEqual(subgroup_order, ["1", "2", "3"], f"Expected ['1', '2', '3'], got {subgroup_order}")
+        self.assertEqual(
+            subgroup_order,
+            ["1", "2", "3"],
+            f"Expected ['1', '2', '3'], got {subgroup_order}",
+        )
 
     def test_numeric_subgroup_sorting_pivot_by_group(self):
         """Test numeric subgroup_value sorting in pivot_by_group."""
@@ -68,7 +72,11 @@ class TestSubgroupSorting(unittest.TestCase):
 
         # Should be sorted by subgroup_value first: 1, 2, 3
         subgroup_order = result["subgroup_value"].unique(maintain_order=True).to_list()
-        self.assertEqual(subgroup_order, ["1", "2", "3"], f"Expected ['1', '2', '3'], got {subgroup_order}")
+        self.assertEqual(
+            subgroup_order,
+            ["1", "2", "3"],
+            f"Expected ['1', '2', '3'], got {subgroup_order}",
+        )
 
     def test_string_subgroup_sorting_pivot_by_model(self):
         """Test string subgroup_value sorting in pivot_by_model."""
@@ -85,7 +93,11 @@ class TestSubgroupSorting(unittest.TestCase):
 
         # Should be sorted alphabetically: A, B, Z
         subgroup_order = result["subgroup_value"].unique(maintain_order=True).to_list()
-        self.assertEqual(subgroup_order, ["A", "B", "Z"], f"Expected ['A', 'B', 'Z'], got {subgroup_order}")
+        self.assertEqual(
+            subgroup_order,
+            ["A", "B", "Z"],
+            f"Expected ['A', 'B', 'Z'], got {subgroup_order}",
+        )
 
     def test_string_subgroup_sorting_pivot_by_group(self):
         """Test string subgroup_value sorting in pivot_by_group."""
@@ -102,7 +114,11 @@ class TestSubgroupSorting(unittest.TestCase):
 
         # Should be sorted alphabetically: A, B, Z
         subgroup_order = result["subgroup_value"].unique(maintain_order=True).to_list()
-        self.assertEqual(subgroup_order, ["A", "B", "Z"], f"Expected ['A', 'B', 'Z'], got {subgroup_order}")
+        self.assertEqual(
+            subgroup_order,
+            ["A", "B", "Z"],
+            f"Expected ['A', 'B', 'Z'], got {subgroup_order}",
+        )
 
     def test_subgroup_priority_over_treatment(self):
         """Test that subgroup_value sorting takes priority over treatment sorting."""
@@ -136,7 +152,11 @@ class TestSubgroupSorting(unittest.TestCase):
         actual_pattern = [
             (row["subgroup_value"], row["Treatment"]) for row in first_few_rows
         ]
-        self.assertEqual(actual_pattern, expected_pattern, f"Expected {expected_pattern}, got {actual_pattern}")
+        self.assertEqual(
+            actual_pattern,
+            expected_pattern,
+            f"Expected {expected_pattern}, got {actual_pattern}",
+        )
 
     def test_consistent_sorting_between_methods(self):
         """Test that both pivot methods produce consistent subgroup ordering."""
@@ -159,7 +179,11 @@ class TestSubgroupSorting(unittest.TestCase):
             result_group["subgroup_value"].unique(maintain_order=True).to_list()
         )
 
-        self.assertEqual(model_order, group_order, f"Methods inconsistent: model={model_order}, group={group_order}")
+        self.assertEqual(
+            model_order,
+            group_order,
+            f"Methods inconsistent: model={model_order}, group={group_order}",
+        )
         self.assertEqual(model_order, ["1", "2", "3"])
 
 
