@@ -44,7 +44,9 @@ jobs:
       - name: Run tests with coverage
         run: |
           # Generate coverage report directly in docs/coverage directory (like rtflite)
-          pytest tests/ --cov=src/polars_eval_metrics --cov-report=html:docs/coverage --cov-report=term
+          coverage run --source=src/polars_eval_metrics -m unittest discover tests
+          coverage report
+          coverage html -d docs/coverage
           echo "Coverage report generated at docs/coverage"
           
       - name: Setup Quarto
