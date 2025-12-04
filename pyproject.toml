@@ -30,6 +30,7 @@ docs = [
 ]
 test = [
     "great-tables>=0.18.0",
+    "coverage>=7.0.0",
 ]
 
 [dependency-groups]
@@ -47,6 +48,7 @@ docs = [
 ]
 test = [
     "great-tables>=0.18.0",
+    "coverage>=7.0.0",
 ]
 dev = [
     "ruff>=0.12.11",
