@@ -9,7 +9,7 @@ from polars_eval_metrics import (
 )
 
 from polars_eval_metrics.metric_registry import MetricInfo
-from tests.data_fixtures import get_metric_sample_df
+from .data_fixtures import get_metric_sample_df
 
 
 class TestMetricRegistry(unittest.TestCase):
