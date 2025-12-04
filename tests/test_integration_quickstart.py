@@ -4,7 +4,7 @@ import unittest
 import polars as pl
 
 from polars_eval_metrics import MetricDefine, MetricEvaluator
-from tests.test_utils import generate_sample_data
+from .test_utils import generate_sample_data
 
 
 class TestQuickstartIntegration(unittest.TestCase):

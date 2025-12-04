@@ -5,7 +5,7 @@ import polars as pl
 
 from polars_eval_metrics import MetricDefine, MetricEvaluator
 from polars_eval_metrics.ard import ARD
-from tests.test_utils import generate_sample_data as generate_test_data
+from .test_utils import generate_sample_data as generate_test_data
 
 
 class TestQuickstartSingleMetric(unittest.TestCase):
