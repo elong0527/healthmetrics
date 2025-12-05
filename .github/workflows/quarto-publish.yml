@@ -54,7 +54,7 @@ jobs:
 
       - name: Render Quarto book
         run: |
-          uv run quarto render
+          uv run quarto render docs
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -62,7 +62,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: _site
+          path: docs/_site
 
   deploy:
     environment:
