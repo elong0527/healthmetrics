@@ -4,11 +4,8 @@ project:
   resources:
     - coverage
 
-metadata-files:
-  - _metadata.yml
-
 website:
-  title: "Polars Eval Metrics"
+  title: "Health Metrics"
   sidebar:
     style: "docked"
     search: true

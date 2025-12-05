@@ -48,7 +48,7 @@ import polars as pl
 pl.Config.set_fmt_str_lengths(200)
 pl.Config.set_tbl_rows(-1)
 
-from polars_eval_metrics import MetricDefine
+from healthmetrics import MetricDefine
 ```
 
 ## Quick Start: Mean Absolute Error
@@ -81,7 +81,7 @@ returned as Polars lazy operations that fit directly into `within_expr` or
 ```{python}
 #| code-fold: true
 
-from polars_eval_metrics import MetricRegistry
+from healthmetrics import MetricRegistry
 
 metrics_data = [
     {"name": name, "expression": str(MetricRegistry.get_metric(name))}
@@ -179,7 +179,7 @@ expression output to determine the stored type, while the optional `format`
 string controls how `stat_fmt` renders the value:
 
 ```{python}
-from polars_eval_metrics.metric_registry import MetricInfo
+from healthmetrics.metric_registry import MetricInfo
 
 MetricDefine(
     name="mean_sd_inline",
@@ -204,7 +204,7 @@ The resulting metric stores the struct in `stat.value_struct` while
 feeds error columns, applies scopes, and materialises results as lazy frames.
 
 ```{python}
-from polars_eval_metrics import MetricEvaluator
+from healthmetrics import MetricEvaluator
 from data_generator import generate_sample_data
 
 data = generate_sample_data(n_subjects=6, n_visits=3, n_groups=2)

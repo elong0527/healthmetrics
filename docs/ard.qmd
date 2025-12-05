@@ -12,8 +12,8 @@ sys.path.insert(0, os.path.abspath("../src"))
 
 ```{python}
 import polars as pl
-from polars_eval_metrics import MetricDefine, MetricEvaluator
-from polars_eval_metrics.ard import ARD
+from healthmetrics import MetricDefine, MetricEvaluator
+from healthmetrics.ard import ARD
 from data_generator import generate_sample_data
 
 pl.Config.set_tbl_rows(8)
@@ -71,7 +71,7 @@ Any warnings or errors that occur while evaluating a metric are preserved in the
 
 The evaluator returns a Polars `DataFrame` by default, keeping columns such as
 `label`, `metric`, `estimate`, and `value` ready for display. When you need the
-full ARD structure, reuse the lazy output with the :class:`polars_eval_metrics.ard.ARD`
+full ARD structure, reuse the lazy output with the :class:`healthmetrics.ard.ARD`
 helper.
 
 ```{python}

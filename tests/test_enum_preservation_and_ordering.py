@@ -9,7 +9,7 @@ These tests cover the recent changes made to:
 
 import unittest
 import polars as pl
-from polars_eval_metrics import MetricDefine, MetricEvaluator
+from healthmetrics import MetricDefine, MetricEvaluator
 
 
 class TestEnumPreservationAndOrdering(unittest.TestCase):

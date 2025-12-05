@@ -45,7 +45,7 @@ jobs:
 
       - name: Setup Jupyter kernel
         run: |
-          uv run python -m ipykernel install --user --name demo-eval-metric
+          uv run python -m ipykernel install --user --name python3
 
       - name: Install LibreOffice
         run: |

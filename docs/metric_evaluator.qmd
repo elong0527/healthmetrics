@@ -32,8 +32,8 @@ Throughout this page we reuse the synthetic dataset produced by
 
 ```{python}
 import polars as pl
-from polars_eval_metrics import MetricDefine, MetricEvaluator, MetricRegistry
-from polars_eval_metrics.metric_registry import MetricInfo
+from healthmetrics import MetricDefine, MetricEvaluator, MetricRegistry
+from healthmetrics.metric_registry import MetricInfo
 from data_generator import generate_sample_data
 
 # Create sample data using shared generator
@@ -82,7 +82,7 @@ composition before materialising the result:
 ```{python}
 basic_lazy = evaluator.evaluate(collect=False)
 
-from polars_eval_metrics.ard import ARD
+from healthmetrics.ard import ARD
 
 # Wrap the lazy output in the ARD helper when you need canonical struct columns
 ard_view = ARD(basic_lazy)

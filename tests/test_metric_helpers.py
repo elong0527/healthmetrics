@@ -2,12 +2,12 @@
 
 import unittest
 
-from polars_eval_metrics import (
+from healthmetrics import (
     create_metrics,
     MetricType,
     MetricScope,
 )
-from polars_eval_metrics.metric_helpers import create_metric_from_dict
+from healthmetrics.metric_helpers import create_metric_from_dict
 
 
 class TestCreateMetricFromDict(unittest.TestCase):

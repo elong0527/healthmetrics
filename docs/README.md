@@ -34,7 +34,7 @@ python -c "
 import sys, os
 sys.path.insert(0, os.path.abspath('../src'))
 
-from polars_eval_metrics import MetricDefine, MetricEvaluator, create_metrics
+from healthmetrics import MetricDefine, MetricEvaluator, create_metrics
 from data_generator import generate_sample_data
 
 # Your example code here

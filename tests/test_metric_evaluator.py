@@ -9,8 +9,8 @@ from typing import Any
 import unittest
 
 import polars as pl
-from polars_eval_metrics import MetricDefine, MetricEvaluator, MetricScope, MetricType
-from polars_eval_metrics.ard import ARD
+from healthmetrics import MetricDefine, MetricEvaluator, MetricScope, MetricType
+from healthmetrics.ard import ARD
 from .data_fixtures import (
     get_metric_sample_df,
     get_grouped_metric_df,

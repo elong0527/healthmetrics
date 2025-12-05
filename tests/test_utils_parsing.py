@@ -1,7 +1,7 @@
 """Tests for utility helpers used in table formatting."""
 
 import unittest
-from polars_eval_metrics.utils import parse_pivot_column
+from healthmetrics.utils import parse_pivot_column
 
 
 class TestParsePivotColumn(unittest.TestCase):

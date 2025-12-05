@@ -7,7 +7,7 @@ import unittest
 
 import polars as pl
 
-from polars_eval_metrics.ard import ARD
+from healthmetrics.ard import ARD
 
 
 def stat_struct(**overrides: Any) -> dict[str, Any]:

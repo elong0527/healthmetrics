@@ -1,14 +1,14 @@
 import unittest
 import polars as pl
 
-from polars_eval_metrics import (
+from healthmetrics import (
     MetricDefine,
     MetricEvaluator,
     MetricRegistry,
     MetricScope,
 )
 
-from polars_eval_metrics.metric_registry import MetricInfo
+from healthmetrics.metric_registry import MetricInfo
 from .data_fixtures import get_metric_sample_df
 
 

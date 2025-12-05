@@ -4,7 +4,7 @@ import unittest
 import polars as pl
 import numpy as np
 
-from polars_eval_metrics import MetricDefine, MetricType, MetricScope
+from healthmetrics import MetricDefine, MetricType, MetricScope
 
 
 class TestMetricDefineBasic(unittest.TestCase):

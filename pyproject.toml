@@ -89,7 +89,7 @@ package-dir = {"" = "src"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
-include = ["polars_eval_metrics*"]
+include = ["healthmetrics*"]
 
 [tool.mypy]
 exclude = ["build/"]
